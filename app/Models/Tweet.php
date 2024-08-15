@@ -11,4 +11,8 @@ class Tweet extends Model
 
     protected $table = 'tweets';
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
