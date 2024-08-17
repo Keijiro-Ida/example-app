@@ -30,5 +30,8 @@ class DeleteTest extends TestCase
         $this->actingAs($user);
         $response = $this->delete('/tweet/delete/' . $tweet->id);
         $response->assertRedirect('/tweet');
+        $this->assertDatabaseMissing('tweets', [
+            'id' => $tweet->id
+        ]);
     }
 }
