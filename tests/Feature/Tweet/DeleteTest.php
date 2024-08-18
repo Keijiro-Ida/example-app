@@ -24,18 +24,9 @@ class DeleteTest extends TestCase
 
     public function test_delete_successed()
     {
-         // TweetService のモックを作成
-        $tweetServiceMock = $this->createMock(TweetService::class);
-        $tweetServiceMock->method('checkOwnTweet')
-                        ->willReturn(true); // checkOwnTweetが常にtrueを返すように設定
-
-        // モックをアプリケーションにインスタンスとして注入
-        $this->app->instance(TweetService::class, $tweetServiceMock);
 
         $user = User::factory()->create();
-        $tweet = Tweet::factory()->create([
-            'user_id' => $user->id
-        ]);
+        $tweet = Tweet::factory()->for($user)->create(); // for() メソッドでユーザーを関連付け
         $this->actingAs($user);
         $response = $this->delete('/tweet/delete/' . $tweet->id);
         $response->assertRedirect('/tweet');
