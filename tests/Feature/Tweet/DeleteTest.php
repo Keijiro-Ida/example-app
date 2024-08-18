@@ -21,12 +21,9 @@ class DeleteTest extends TestCase
         $response->assertStatus(200);
     }
 
-    /**
-     * @skip
-     */
     public function test_delete_successed()
     {
-        $this->markTestSkipped('このテストは一時的にスキップされています。');
+        // $this->markTestSkipped('このテストは一時的にスキップされています。');
         $user = User::factory()->create();
         $tweet = Tweet::factory()->create([
             'user_id' => $user->id
