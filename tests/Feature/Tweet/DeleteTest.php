@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Tweet;
+use App\Services\TweetService;
 
 class DeleteTest extends TestCase
 {
