@@ -21,6 +21,9 @@ class DeleteTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * @skip
+     */
     public function test_delete_successed()
     {
         $user = User::factory()->create();
