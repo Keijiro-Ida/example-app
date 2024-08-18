@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class TweetFactory extends Factory
 {
+    protected $model = \App\Models\Tweet::class;
     /**
      * Define the model's default state.
      *

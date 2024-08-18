@@ -10,6 +10,7 @@ class Tweet extends Model
     use HasFactory;
 
     protected $table = 'tweets';
+    protected $fillable = ['user_id', 'content'];
 
     public function user()
     {
