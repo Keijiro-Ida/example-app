@@ -46,7 +46,7 @@ jobs:
         run: php artisan key:generate --env testing
       - name: Wait for MySQL to be ready
         run: |
-          until mysqladmin ping -h"mysql.test" --silent; do
+          until mysqladmin ping -h"mysql" --silent; do
             echo 'waiting for mysql to be ready...'
             sleep 5
           done
