@@ -56,5 +56,9 @@ jobs:
           done
       - name: Run Migrations
         run: php artisan migrate --env=testing --force
+      - name: Install Node.js dependencies
+        run: npm install
+      - name: Build assets with Vite
+        run: npm run build
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: vendor/bin/phpunit
