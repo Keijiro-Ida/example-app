@@ -23,7 +23,14 @@ class DeleteTest extends TestCase
 
     public function test_delete_successed()
     {
-        // $this->markTestSkipped('このテストは一時的にスキップされています。');
+         // TweetService のモックを作成
+        $tweetServiceMock = $this->createMock(TweetService::class);
+        $tweetServiceMock->method('checkOwnTweet')
+                        ->willReturn(true); // checkOwnTweetが常にtrueを返すように設定
+
+        // モックをアプリケーションにインスタンスとして注入
+        $this->app->instance(TweetService::class, $tweetServiceMock);
+
         $user = User::factory()->create();
         $tweet = Tweet::factory()->create([
             'user_id' => $user->id
