@@ -44,6 +44,10 @@ jobs:
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
       - name: Generate key
         run: php artisan key:generate --env testing
+      - name: Set hostname
+        run: sudo echo "127.0.0.1 mysql" | sudo tee -a /etc/hosts
+      - name: Test MySQL Connection
+        run: mysql -h mysql -u ${{ env.DB_USERNAME }} -p${{ env.DB_PASSWORD }} -e "SHOW DATABASES;"
       - name: Wait for MySQL to be ready
         run: |
           until mysqladmin ping -h"mysql" --silent; do
